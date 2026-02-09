@@ -188,7 +188,3 @@ npm run dev
 - **"Module not found"**: Make sure you activated the virtual environment (`venv`) before running the backend.
 - **"API Key Error"**: Check your `.env` file and ensure the variable name is exactly `GEMINI_API_KEY`.
 
----
-
-## 📄 License
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.

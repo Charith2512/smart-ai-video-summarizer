@@ -1,0 +1,29 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor Config
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment Variables (Security Critical)
+.env
+.env.local
+*.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Dependencies
+node_modules/
+venv/
+ai_env/
+__pycache__/
+
+# Local/Utility Scripts (User Preference)
+kill_servers.bat
+project_scripts/

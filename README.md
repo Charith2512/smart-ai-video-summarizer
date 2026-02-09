@@ -14,6 +14,18 @@
 
 ---
 
+## 💻 Hardware Requirements
+Since this application runs AI models locally (via Ollama), decent hardware is recommended for the best experience.
+
+| Component | Minimum | Recommended |
+| :--- | :--- | :--- |
+| **RAM** | 16 GB | 32 GB+ |
+| **GPU** | NVIDIA RTX 2060 (6GB VRAM) or Apple M1 | NVIDIA RTX 3060 (12GB VRAM) or Apple M2/M3 |
+| **Disk Space** | 10 GB Free | 20 GB+ (SSD) |
+| **OS** | Windows 10/11, macOS, Linux | Windows 11 (WSL2) or macOS |
+
+---
+
 ## 🛠️ Prerequisites
 Before starting, ensure you have the following installed on your computer:
 

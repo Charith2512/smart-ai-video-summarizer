@@ -26,4 +26,8 @@ __pycache__/
 
 # Local/Utility Scripts (User Preference)
 kill_servers.bat
-project_scripts/    
+project_scripts/
+
+# Documentation (Exclude all MDs except README)
+*.md
+!README.md

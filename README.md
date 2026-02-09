@@ -126,7 +126,7 @@ Open a new terminal in the `smart_video_summarizer_backend` folder.
       ```
     - *The backend will automatically create the tables when you run it.*
 
-### 3. Frontend Setup (The Interface)
+### 4. Frontend Setup (The Interface)
 Open a new terminal in the `smart_video_summarizer_frontend` folder.
 
 1.  **Navigate to the frontend folder**:

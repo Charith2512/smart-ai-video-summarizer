@@ -111,8 +111,18 @@ Open a new terminal in the `smart_video_summarizer_backend` folder.
     - Add the following line (replace with your actual key):
       ```env
       GEMINI_API_KEY=AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      DATABASE_URL=mysql+pymysql://root:password@localhost:3306/summarizer_db
       ```
-    - Save the file.
+    - *Replace `root:password` with your actual MySQL username and password.*
+
+5.  **Database Setup (MySQL)**:
+    - Install **MySQL Server**: [Download Here](https://dev.mysql.com/downloads/installer/).
+    - Open your MySQL Workbench or Terminal.
+    - Run this command to create the database:
+      ```sql
+      CREATE DATABASE summarizer_db;
+      ```
+    - *The backend will automatically create the tables when you run it.*
 
 ### 3. Frontend Setup (The Interface)
 Open a new terminal in the `smart_video_summarizer_frontend` folder.

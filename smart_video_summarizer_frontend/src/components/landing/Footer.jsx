@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
+
 
 export default function Footer() {
     return (
@@ -19,22 +19,7 @@ export default function Footer() {
                     </p>
                 </div>
 
-                {/* Links */}
-                <div className="flex gap-4">
-                    {[
-                        { icon: FaGithub, href: "#" },
-                        { icon: FaTwitter, href: "#" },
-                        { icon: FaLinkedin, href: "#" }
-                    ].map((item, index) => (
-                        <a
-                            key={index}
-                            href={item.href}
-                            className="w-10 h-10 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white dark:hover:text-slate-900 hover:bg-slate-900 dark:hover:bg-white hover:border-slate-900 dark:hover:border-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-slate-900/20 dark:hover:shadow-white/10"
-                        >
-                            <item.icon size={18} />
-                        </a>
-                    ))}
-                </div>
+
 
                 {/* Copyright */}
                 <div className="text-xs font-semibold uppercase tracking-widest text-slate-400">

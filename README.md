@@ -69,7 +69,24 @@ git clone https://github.com/YOUR_USERNAME/smart-ai-video-summarizer.git
 cd smart-ai-video-summarizer
 ```
 
-### 2. Backend Setup (The Brain)
+### 2. Setup Local AI (Ollama)
+This project uses **Ollama** to run the privacy-focused local model (`gemma3:12b`).
+
+1.  **Download Ollama**:
+    - Go to [ollama.com](https://ollama.com) and download the installer for your OS.
+    - Run the installer.
+
+2.  **Pull the Model**:
+    - Open your terminal and run:
+      ```bash
+      ollama run gemma3:12b
+      ```
+    - *This will download the model (approx. 5-7 GB). Once you see a chat prompt like `>>>`, you can type `/bye` to exit.*
+
+3.  **Keep Ollama Running**:
+    - Ensure the Ollama app is running in the background (check your system tray) whenever you use the Summarizer.
+
+### 3. Backend Setup (The Brain)
 Open a new terminal in the `smart_video_summarizer_backend` folder.
 
 1.  **Navigate to the backend folder**:

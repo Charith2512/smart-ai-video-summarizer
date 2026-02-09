@@ -106,9 +106,11 @@ Open a new terminal in the `smart_video_summarizer_backend` folder.
     ```
 
 4.  **Configure API Key (.env File)**:
-    - Create a new file named `.env` in the `smart_video_summarizer_backend` folder.
-    - Open it with a text editor (Notepad or VS Code).
-    - Add the following line (replace with your actual key):
+    - You can copy the example file:
+      ```bash
+      cp .env.example .env
+      ```
+    - Or create a new `.env` file and add your credentials:
       ```env
       GEMINI_API_KEY=AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       DATABASE_URL=mysql+pymysql://root:password@localhost:3306/summarizer_db
@@ -157,9 +159,9 @@ uvicorn main:app --reload
 cd smart_video_summarizer_frontend
 npm run dev
 ```
-*You should see "Local: http://localhost:5173/"*
+*You should see "Local: http://localhost:3000/"*
 
-**Final Step**: Open your browser and go to `http://localhost:5173`.
+**Final Step**: Open your browser and go to `http://localhost:3000`.
 
 ---
 

@@ -362,7 +362,7 @@ class VideoService:
                     print("[VIDEO-SERVICE] Generating Local Text Highlights (Trace-Based)...")
                     
                     # Use local model to get verbatim quotes
-                    raw_quotes = extract_key_quotes_local(transcript_text, metadata)
+                    raw_quotes = extract_key_quotes_local(transcript_text, metadata, check_cancel=check_cancel)
                     print(f"[VIDEO-SERVICE] Extracted {len(raw_quotes)} raw quotes. Mapping timestamps...")
                     
                     # Map quotes to timestamps
@@ -434,7 +434,8 @@ class VideoService:
                         length=length, 
                         format_mode=style,
                         images=images,
-                        metadata=metadata
+                        metadata=metadata,
+                        check_cancel=check_cancel
                     )
                 else:
                     # Visual Fallback
@@ -443,7 +444,8 @@ class VideoService:
                         images=images,
                         metadata=metadata,
                         length=length,
-                        format_mode=style
+                        format_mode=style,
+                        check_cancel=check_cancel
                     )
                     
                 result.update(summary_result) # Merges summary_text and stats

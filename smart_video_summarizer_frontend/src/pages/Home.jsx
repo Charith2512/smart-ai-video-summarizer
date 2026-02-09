@@ -1040,17 +1040,17 @@ export default function Home() {
                         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-slate-950/60 backdrop-blur-sm animate-fade-in"
                             onClick={() => setShowAuthModal(false)}>
                             <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] p-10 max-w-md w-full text-center shadow-2xl animate-scale-in relative border border-white/50 dark:border-slate-800 ring-1 ring-slate-900/5 dark:ring-white/5" onClick={e => e.stopPropagation()}>
-                                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <span className="text-3xl">🔒</span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-800 mb-2">Sign In Required</h3>
-                                <p className="text-slate-500 mb-8 leading-relaxed">
-                                    To use this <strong className="text-slate-900 capitalize">{restrictedFeature}</strong> feature, please sign in.
+                                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">Sign In Required</h3>
+                                <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
+                                    To use this <strong className="text-slate-900 dark:text-white capitalize">{restrictedFeature}</strong> feature, please sign in.
                                 </p>
                                 <div className="flex gap-4 justify-center">
                                     <button
                                         onClick={() => setShowAuthModal(false)}
-                                        className="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors"
+                                        className="px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                                     >
                                         Cancel
                                     </button>
@@ -1059,7 +1059,7 @@ export default function Home() {
                                             setShowAuthModal(false);
                                             setIsLoginModalOpen(true);
                                         }}
-                                        className="px-6 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-black hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300"
+                                        className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:bg-black dark:hover:bg-slate-100 hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300"
                                     >
                                         Sign In
                                     </button>

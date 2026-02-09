@@ -69,13 +69,14 @@ class UAMSASummarizer:
         else:
             genai.configure(api_key=self.api_key)
 
-    def summarize_cloud(self, text: str, preference: str = "medium", format_mode: str = "paragraph", images: list = None, metadata: dict = {}) -> str:
+    def summarize_cloud(self, text: str, preference: str = "medium", format_mode: str = "paragraph", images: list = None, metadata: dict = {}, check_cancel=None) -> str:
         """
         Direct Cloud API Call for Video Transcripts + Images (Multimodal).
         Uses Gemma 3 27B IT (High RPD, Large Context).
         Accepts full metadata dict for rich context.
         """
         try:
+            if check_cancel: check_cancel()
             print(f"[CLOUD-API] Sending {len(text)} chars + {len(images) if images else 0} frames to Gemma 3 27B IT...")
             
             # Use Gemma 3 27B IT
@@ -150,12 +151,13 @@ class UAMSASummarizer:
             
             return f"Error using Cloud API: {error_str}"
 
-    def summarize_visual_cloud(self, images: list, metadata: dict, length: str, format_mode: str) -> str:
+    def summarize_visual_cloud(self, images: list, metadata: dict, length: str, format_mode: str, check_cancel=None) -> str:
         """
         Visual-Only Fallback Pipeline.
         Used when transcripts are disabled/missing. Rely heavily on frames + metadata.
         """
         try:
+            if check_cancel: check_cancel()
             print(f"[CLOUD-API-VISUAL] Using Gemma 3 27B IT for Visual Analysis ({len(images)} frames)...")
             model = genai.GenerativeModel('gemma-3-27b-it')
             
@@ -210,7 +212,7 @@ class UAMSASummarizer:
                 
             return f"Visual Analysis Failed: {error_str}"
 
-    def generate_highlights_cloud(self, transcript_data: list, images: list = None, metadata: dict = {}) -> list:
+    def generate_highlights_cloud(self, transcript_data: list, images: list = None, metadata: dict = {}, check_cancel=None) -> list:
         """
         Specialized Prompt for Extracting Video Highlights (JSON Timestamps).
         Returns: List of dicts [{'start': 10, 'end': 40, 'title': 'Intro'}, ...]
@@ -225,6 +227,7 @@ class UAMSASummarizer:
         last_error = None
         
         for model_name in FALLBACK_MODELS:
+            if check_cancel: check_cancel()
             try:
                 print(f"[CLOUD-API] Generating Structured Highlights using {model_name}...")
                 model = genai.GenerativeModel(model_name)
@@ -376,7 +379,7 @@ class UAMSASummarizer:
                  violation = "Daily Quota Exceeded (All Models)"
             return [{"error": "QUOTA_EXCEEDED", "details": violation}]
             
-    def extract_key_quotes_local(self, transcript_text: str, metadata: dict = {}) -> list:
+    def extract_key_quotes_local(self, transcript_text: str, metadata: dict = {}, check_cancel=None) -> list:
         """
         Uses Local Ollama (Gemma 3 12B) to find key sentences verbatim.
         Handles long transcripts by splitting into chunks.
@@ -401,6 +404,7 @@ class UAMSASummarizer:
         
         # Loop until we process the whole text
         while start < total_len:
+            if check_cancel: check_cancel()
             end = min(start + CHUNK_SIZE, total_len)
             
             # Snap end to nearest space to avoid cutting words
@@ -785,9 +789,10 @@ uamsa_algorithm = UAMSASummarizer()
 def summarize_text(text: str, length: str = "medium", format_mode: str = "paragraph") -> dict:
     return uamsa_algorithm.summarize(text, length, format_mode)
     
-def summarize_text_cloud(text: str, length: str = "medium", format_mode: str = "paragraph", images: list = None, metadata: dict = {}) -> dict:
+    
+def summarize_text_cloud(text: str, length: str = "medium", format_mode: str = "paragraph", images: list = None, metadata: dict = {}, check_cancel=None) -> dict:
     """Wrapper for Cloud-Based Video Summarization"""
-    summary = uamsa_algorithm.summarize_cloud(text, length, format_mode, images, metadata)
+    summary = uamsa_algorithm.summarize_cloud(text, length, format_mode, images, metadata, check_cancel)
     
     # Generate Stats for consistency
     orig_stats = uamsa_algorithm.get_text_stats(text)
@@ -801,9 +806,9 @@ def summarize_text_cloud(text: str, length: str = "medium", format_mode: str = "
         }
     }
 
-def generate_video_highlights(transcript_data: list, images: list = None, metadata: dict = {}) -> list:
+def generate_video_highlights(transcript_data: list, images: list = None, metadata: dict = {}, check_cancel=None) -> list:
     """Wrapper for Video Highlights Generation"""
-    return uamsa_algorithm.generate_highlights_cloud(transcript_data, images, metadata)
+    return uamsa_algorithm.generate_highlights_cloud(transcript_data, images, metadata, check_cancel)
     
 def extract_and_summarize(file_path: str, content_type: str, length: str, format_mode: str) -> dict:
     # 1. Extract
@@ -814,13 +819,13 @@ def extract_and_summarize(file_path: str, content_type: str, length: str, format
     # 2. Summarize
     return uamsa_algorithm.summarize(raw_text, length, format_mode)
 
-def extract_key_quotes_local(transcript_text: str, metadata: dict = {}) -> list:
+def extract_key_quotes_local(transcript_text: str, metadata: dict = {}, check_cancel=None) -> list:
     """Wrapper for Local Highlight Extraction"""
-    return uamsa_algorithm.extract_key_quotes_local(transcript_text, metadata)
+    return uamsa_algorithm.extract_key_quotes_local(transcript_text, metadata, check_cancel)
 
-def summarize_visual_fallback(images: list = None, metadata: dict = {}, length: str = "medium", format_mode: str = "paragraph") -> dict:
+def summarize_visual_fallback(images: list = None, metadata: dict = {}, length: str = "medium", format_mode: str = "paragraph", check_cancel=None) -> dict:
     """Wrapper for Visual-Only Fallback Summary"""
-    summary = uamsa_algorithm.summarize_visual_cloud(images, metadata, length, format_mode)
+    summary = uamsa_algorithm.summarize_visual_cloud(images, metadata, length, format_mode, check_cancel)
     
     # Generate Stats (Visual Only stats are estimated or flagged)
     return {

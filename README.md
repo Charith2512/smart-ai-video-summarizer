@@ -154,6 +154,8 @@ uvicorn main:app --reload
 ```
 *You should see "Uvicorn running on http://127.0.0.1:8000"*
 
+> **Tip (Windows)**: You can also just double-click `run_backend.bat` inside the backend folder to start it automatically!
+
 **Terminal 2: Frontend**
 ```bash
 cd smart_video_summarizer_frontend

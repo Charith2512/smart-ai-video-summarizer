@@ -960,16 +960,16 @@ export default function History() {
                             onClick={e => e.stopPropagation()}
                         >
                             {/* Decorative Background */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-red-100 rounded-full blur-[50px] -mr-10 -mt-10 pointer-events-none" />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-red-100 dark:bg-red-900/20 rounded-full blur-[50px] -mr-10 -mt-10 pointer-events-none" />
 
                             <div className="mb-6 text-center">
-                                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-red-600">
+                                <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-red-600 dark:text-red-400">
                                     🗑️
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-800 mb-2">
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
                                     {isClearingAll ? "Clear All History?" : showConfirmDeleteModal ? `Delete ${selectedItems.size} ${filter === 'all' ? 'Items' : filter === 'highlights' ? 'Highlights' : filter + 's'}?` : "Delete Summary?"}
                                 </h3>
-                                <p className="text-slate-500 text-sm">
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">
                                     {isClearingAll
                                         ? "This action cannot be undone. All your saved summaries and files will be permanently removed."
                                         : showConfirmDeleteModal
@@ -991,7 +991,7 @@ export default function History() {
                                 </button>
                                 <button
                                     onClick={showConfirmDeleteModal ? confirmBatchDelete : executeDelete}
-                                    className="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-colors shadow-lg shadow-red-500/20"
+                                    className="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-red-500/20 dark:shadow-red-900/40"
                                 >
                                     {isClearingAll ? "Yes, Clear All" : "Yes, Delete"}
                                 </button>

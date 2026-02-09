@@ -140,8 +140,19 @@ class UAMSASummarizer:
             if images:
                 prompt_parts.extend(images)
             
-            response = model.generate_content(prompt_parts)
-            return response.text
+            # Use streaming to allow cancellation during generation
+            response = model.generate_content(prompt_parts, stream=True)
+            
+            full_text = ""
+            for chunk in response:
+                if check_cancel: check_cancel()
+                try:
+                    if chunk.text:
+                        full_text += chunk.text
+                except ValueError:
+                    pass
+                    
+            return full_text
         except Exception as e:
             error_str = str(e)
             print(f"[CLOUD-ERROR] {error_str}")
@@ -200,8 +211,19 @@ class UAMSASummarizer:
             else:
                 prompt_parts.append("\n[NO FRAMES AVAILABLE] Please summarize based on metadata alone.")
             
-            response = model.generate_content(prompt_parts)
-            return response.text
+            # Use streaming for visual summary to allow cancellation
+            response = model.generate_content(prompt_parts, stream=True)
+            
+            full_text = ""
+            for chunk in response:
+                if check_cancel: check_cancel()
+                try:
+                    if chunk.text:
+                        full_text += chunk.text
+                except ValueError:
+                    pass
+            
+            return full_text
             
         except Exception as e:
             error_str = str(e)
@@ -272,8 +294,19 @@ class UAMSASummarizer:
                 
                 if images: prompt_parts.extend(images)
                 
-                response = model.generate_content(prompt_parts)
-                text_response = response.text.strip()
+                # Use streaming for highlights to allow cancellation
+                response = model.generate_content(prompt_parts, stream=True)
+                
+                full_text = ""
+                for chunk in response:
+                    if check_cancel: check_cancel()
+                    try:
+                        if chunk.text:
+                            full_text += chunk.text
+                    except ValueError:
+                        pass
+                
+                text_response = full_text.strip()
                 
                 # Clean Markdown if present
                 if "```json" in text_response:

@@ -175,7 +175,7 @@ async def summarize_text_endpoint(
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/summarize/upload_pdf")
-async def summarize_pdf_endpoint(
+def summarize_pdf_endpoint(
     file: UploadFile = File(...), 
     length: str = Form("medium"),
     format_mode: str = Form("paragraph"),

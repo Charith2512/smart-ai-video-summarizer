@@ -14,6 +14,18 @@
 
 ---
 
+## 🏗️ Architecture
+This project is built as a modern Full-Stack Application:
+
+- **Frontend**: **React + Vite** (Fast, responsive UI).
+- **Backend**: **FastAPI** (High-performance Python server).
+- **AI Brain**:
+    - **Cloud**: Google Gemini 1.5/2.0 (Complex reasoning, multimodal).
+    - **Local**: Ollama (Gemma 3 12B) for private, fast summarization.
+- **Processing**: **FFmpeg** & **OpenCV** (Video cutting, frame extraction).
+
+---
+
 ## 💻 Hardware Requirements
 Since this application runs AI models locally (via Ollama), decent hardware is recommended for the best experience.
 
@@ -144,3 +156,8 @@ npm run dev
 - **"FFmpeg not found"**: Ensure FFmpeg is installed and added to your system environment variables.
 - **"Module not found"**: Make sure you activated the virtual environment (`venv`) before running the backend.
 - **"API Key Error"**: Check your `.env` file and ensure the variable name is exactly `GEMINI_API_KEY`.
+
+---
+
+## 📄 License
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.

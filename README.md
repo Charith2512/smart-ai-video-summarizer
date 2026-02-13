@@ -42,7 +42,8 @@ Since this application runs AI models locally (via Ollama), decent hardware is r
 Before starting, ensure you have the following installed on your computer:
 
 1.  **Git**: [Download Here](https://git-scm.com/downloads)
-2.  **Python (3.11 or higher)**: [Download Here](https://www.python.org/downloads/)
+2.  **Python 3.11** (Recommended): [Download Here](https://www.python.org/downloads/release/python-3119/)
+    *   *⚠️ **Important**: Please use Python 3.11. Newer versions (3.12+) have known compatibility issues with OpenCV video streaming.*
     *   *Make sure to check "Add Python to PATH" during installation.*
 3.  **Node.js (v18 or higher)**: [Download Here](https://nodejs.org/en)
 4.  **FFmpeg** (For video processing): [Download Here](https://ffmpeg.org/download.html)

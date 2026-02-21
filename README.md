@@ -50,8 +50,8 @@ graph TD
     E
     end
     
-    style D fill:#f9f,stroke:#333,stroke-width:2px
-    style E fill:#00ff00,stroke:#333,stroke-width:2px
+    style D fill:#ffe6f2,stroke:#ff0080,stroke-width:1px,color:#000
+    style E fill:#e6fff2,stroke:#00cc66,stroke-width:1px,color:#000
 ```
 
 1.  **Local Inference Layer**: Utilizes **Ollama** to serve **Gemma 3 12B** for privacy-focused text processing, summarization, and verbatim quote extraction.

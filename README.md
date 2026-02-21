@@ -4,6 +4,24 @@
 ![Python](https://img.shields.io/badge/Backend-Python_3.11+-blue?logo=python&logoColor=white)
 ![React](https://img.shields.io/badge/Frontend-React_18+-61DAFB?logo=react&logoColor=black)
 
+---
+
+## 🎓 Academic Context
+This project is developed as a part of the **Bachelor of Technology (B.Tech)** curriculum at the **Institute of Aeronautical Engineering (IARE)**. 
+
+- **Project Title**: Smart AI Video Summarizer with Text and Video Highlights
+- **Institution**: Institute of Aeronautical Engineering (IARE), Hyderabad
+- **Department**: Computer Science and Engineering (Artificial Intelligence and Machine Learning)
+- **Objective**: To research and implement an efficient pipeline for localized LLM inference (Gemma 3 12B) combined with cloud-based multimodal analysis for automated video content extraction.
+
+---
+
+## 📄 Documentation
+The full technical project report, including literature survey and system methodology, is available below:
+- [**Download Project Report (PDF)**](./docs/project_report.pdf)
+
+---
+
 **Smart AI Video Summarizer** is a powerful, full-stack application that uses advanced AI (Google Gemma / Gemini) to extract meaningful insights from text documents and YouTube videos. It features automatic video highlight extraction, visual analysis, and export capabilities.
 
 ## 🚀 Features
@@ -14,15 +32,37 @@
 
 ---
 
-## 🏗️ Architecture
-This project is built as a modern Full-Stack Application:
+## 🏗️ Technical Architecture & Methodology
+The project explores a **Hybrid AI Orchestration** model to balance privacy, performance, and multimodal accuracy:
 
-- **Frontend**: **React + Vite** (Fast, responsive UI).
-- **Backend**: **FastAPI** (High-performance Python server).
-- **AI Brain**:
-    - **Cloud**: Google Gemini 1.5/2.0 (Complex reasoning, multimodal).
-    - **Local**: Ollama (Gemma 3 12B) for private, fast summarization.
-- **Processing**: **FFmpeg** & **OpenCV** (Video cutting, frame extraction).
+```mermaid
+graph TD
+    A[User UI - React/Vite] --> B[API Gateway - FastAPI]
+    B --> C{Orchestration Layer}
+    C -->|Local| D[Ollama - Gemma 3 12B]
+    C -->|Cloud| E[Gemini API - Gemma 3 27B]
+    B --> F[Processing Pipeline]
+    F --> G[OpenCV/FFmpeg]
+    F --> H[yt-dlp]
+    
+    subgraph "Inference Environment"
+    D
+    E
+    end
+    
+    style D fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#00ff00,stroke:#333,stroke-width:2px
+```
+
+1.  **Local Inference Layer**: Utilizes **Ollama** to serve **Gemma 3 12B** for privacy-focused text processing, summarization, and verbatim quote extraction.
+2.  **Cloud Vision Layer**: Integrates **Gemma 3 27B** (via Google Gemini API) for advanced multimodal analysis, including visual frame analysis and scene understanding.
+3.  **Data Processing Pipeline**:
+    *   **yt-dlp**: For direct media stream extraction.
+    *   **OpenCV & FFmpeg**: For intelligent frame sampling, video cutting, and highlight reel generation.
+    *   **YouTube-Transcript-API**: For high-speed text retrieval with visual fallback logic.
+
+> [!NOTE]
+> **Environment Agnostic Design**: The Inference Layer is designed to be environment-agnostic, supporting local execution via Ollama or remote execution via Dockerized Inference Servers (e.g., Hugging Face ZeroGPU).
 
 ---
 
